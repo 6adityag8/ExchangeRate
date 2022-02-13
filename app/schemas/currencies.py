@@ -3,5 +3,5 @@ from typing import Dict
 from pydantic import BaseModel
 
 
-class CurrencyCode(BaseModel):
+class CurrencyCodeDescription(BaseModel):
     codes: Dict[str, str]
