@@ -41,7 +41,7 @@ async def get_latest_exchange_rate(
     if base not in currencies_dict:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid currency code for Base Currency.",
+            detail="Invalid Base Currency Code.",
         )
     base_currency_dict = get_base_currency_dict(base, currencies_dict)
     return {
