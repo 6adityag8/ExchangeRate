@@ -31,4 +31,5 @@ def get_base_currency_dict(base: str, currency_dict: Dict[str, float]) -> Dict[s
     base_currency_dict = {}
     for currency_code, currency_value in currency_dict.items():
         base_currency_dict[currency_code] = base_value * currency_value
+    base_currency_dict.pop(base, None)
     return base_currency_dict
