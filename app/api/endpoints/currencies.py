@@ -1,4 +1,7 @@
+from typing import Dict
+
 from fastapi import APIRouter, HTTPException, status, Path
+from pydantic import Json
 
 from app.api.constants import CURRENCIES_PATH_PARAM
 from app.api.utils import request
@@ -8,7 +11,11 @@ router = APIRouter()
 
 
 @router.get("/", response_model=CurrencyCodeDescription)
-async def get_all_currencies():
+async def get_all_currencies() -> Dict[str, Json]:
+    """
+    Gets a JSON list of all currency symbols available from
+    the Open Exchange Rates API, along with their full names
+    """
     response = await request(path_param=CURRENCIES_PATH_PARAM)
     return {
         'codes': response.json()
@@ -24,7 +31,10 @@ async def get_currency_description_from_currency_code(
             regex="^[A-Z]{3}$",
             example="EUR"
         )
-):
+) -> any:
+    """
+    Gets the currency description for the requested currency symbol.
+    """
     response = await get_all_currencies()
     if currency_code not in response['codes']:
         raise HTTPException(

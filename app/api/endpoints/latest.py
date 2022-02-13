@@ -25,7 +25,11 @@ async def get_latest_exchange_rate(
             title="Limit results to specific currencies",
             description="List of 3-letter ISO currency codes for which the results are needed to be limited to."
         )
-):
+) -> any:
+    """
+    Gets the latest exchange rates available from the
+    Open Exchange Rates API for the given base currency
+    """
     query_parameter = {
         'app_id': settings.OPEN_EXCHANGE_RATE_APP_ID,
         'prettyprint': False
@@ -37,7 +41,7 @@ async def get_latest_exchange_rate(
     if base not in currencies_dict:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid country code for Base Currency.",
+            detail="Invalid currency code for Base Currency.",
         )
     base_currency_dict = get_base_currency_dict(base, currencies_dict)
     return {

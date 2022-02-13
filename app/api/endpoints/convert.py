@@ -31,7 +31,10 @@ async def convert_currency(
             regex="^[A-Z]{3}$",
             example="INR"
         )
-):
+) -> any:
+    """
+    Converts any money value from one currency to another at the latest API rates.
+    """
     query_parameter = {
         'app_id': settings.OPEN_EXCHANGE_RATE_APP_ID,
         'symbols': '{0},{1}'.format(base, to),

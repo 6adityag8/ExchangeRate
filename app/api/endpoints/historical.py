@@ -31,7 +31,11 @@ async def get_historical_exchange_rate(
             title="Limit results to specific currencies",
             description="List of 3-letter ISO currency codes for which the results are needed to be limited to."
         )
-):
+) -> any:
+    """
+    Gets historical exchange rates for any date available from
+    the Open Exchange Rates API for the given base currency
+    """
     query_parameter = {
         'app_id': settings.OPEN_EXCHANGE_RATE_APP_ID,
         'prettyprint': False
