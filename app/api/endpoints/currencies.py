@@ -20,8 +20,9 @@ async def get_currency_description_from_currency_code(
         currency_code: str = Path(
             ...,
             title="Currency Code",
-            description="The currency code for which the description is needed.",
-            regex="^[A-Z]{3}$"
+            description="3-letter ISO currency code for which the description is needed.",
+            regex="^[A-Z]{3}$",
+            example="EUR"
         )
 ):
     response = await get_all_currencies()
