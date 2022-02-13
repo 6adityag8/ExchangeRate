@@ -1,5 +1,7 @@
+from typing import Dict
+
 from pydantic import BaseModel
 
 
 class CurrencyCode(BaseModel):
-    currency_code: str
+    codes: Dict[str, str]
