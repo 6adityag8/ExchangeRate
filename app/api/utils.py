@@ -24,3 +24,11 @@ def prepare_url(
     f = furl(OPENEXCHANGERATES_BASE_URL)
     f.add(path=path_param, query_params=query_param)
     return f.url
+
+
+def get_base_currency_dict(base: str, currency_dict: Dict[str, float]) -> Dict[str, float]:
+    base_value = 1 / currency_dict[base]
+    base_currency_dict = {}
+    for currency_code, currency_value in currency_dict.items():
+        base_currency_dict[currency_code] = base_value * currency_value
+    return base_currency_dict

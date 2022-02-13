@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
 
 from app.api.constants import LATEST_PATH_PARAM
-from app.api.utils import request
+from app.api.utils import request, get_base_currency_dict
 from app.core.config import settings
 from app.schemas.convert import ConvertedValue
 
